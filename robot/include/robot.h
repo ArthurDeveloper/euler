@@ -24,6 +24,8 @@ public:
 	void setupBluetooth(int receiver, int transmitter);
 	void setupServo(int pin);
 
+	~Robot();
+
 
 
 };

@@ -23,3 +23,10 @@ void Robot::setupBluetooth(int receiver, int transmitter) {
 void Robot::setupServo(int pin) {
 	servo.attach(pin);
 }
+
+Robot::~Robot() {
+	delete leftMotor;
+	delete rightMotor;
+	delete ultrasonic;
+	delete bluetooth;
+}
