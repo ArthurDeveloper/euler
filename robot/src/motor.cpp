@@ -4,6 +4,7 @@ Motor::Motor(int enablePin, int inputPin1, int inputPin2) {
 	this->enablePin = enablePin;
 	this->inputPin1 = inputPin1;
 	this->inputPin2 = inputPin2;
+	analogWrite(enablePin, 255);
 }
 
 void Motor::changeSpeed(float speed) {

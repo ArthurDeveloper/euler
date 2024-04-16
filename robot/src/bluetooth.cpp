@@ -1,18 +1,14 @@
 #include <bluetooth.h>
 
-Bluetooth::Bluetooth(int receiver, int transmitter) : serial(receiver, transmitter) {}
+Bluetooth::Bluetooth(int receiver, int transmitter) : serial(receiver, transmitter) {
+	serial.begin(9600);
+}
 
 String Bluetooth::read() {
 	String message;
 
-	while (serial.available()) {
-		char byte = serial.read();
-
-		if (byte == '\0') {
-			break;
-		}
-
-		message.concat(byte);
+	if (serial.available()) {
+		message = serial.readString();
 	}
 
 	return message;

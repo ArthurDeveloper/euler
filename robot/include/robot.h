@@ -24,6 +24,13 @@ public:
 	void setupBluetooth(int receiver, int transmitter);
 	void setupServo(int pin);
 
+	void move();
+	void stopMoving();
+
+	void turnNeck(int degrees);
+
+	String readIncomingMessage();
+
 	~Robot();
 
 

@@ -24,6 +24,26 @@ void Robot::setupServo(int pin) {
 	servo.attach(pin);
 }
 
+void Robot::move() {
+	rightMotor->spinClockwise();
+	leftMotor->spinClockwise();
+}
+
+void Robot::stopMoving() {
+	rightMotor->stop();
+	leftMotor->stop();
+}
+
+String Robot::readIncomingMessage() {
+	String message = bluetooth->read();
+
+	return message;
+}
+
+void Robot::turnNeck(int degrees) {
+	servo.write(degrees);
+}
+
 Robot::~Robot() {
 	delete leftMotor;
 	delete rightMotor;
