@@ -20,11 +20,11 @@ void Robot::setupBluetooth(int receiver, int transmitter) {
 	bluetooth = new Bluetooth(receiver, transmitter);
 }
 
-void Robot::setupServo(int pin) {
-	servo.attach(pin);
+void Robot::setupNeck(int pin) {
+	neck.attach(pin);
 }
 
-void Robot::move() {
+void Robot::startMoving() {
 	rightMotor->spinClockwise();
 	leftMotor->spinClockwise();
 }
@@ -41,7 +41,7 @@ String Robot::readIncomingMessage() {
 }
 
 void Robot::turnNeck(int degrees) {
-	servo.write(degrees);
+	neck.write(degrees);
 }
 
 Robot::~Robot() {

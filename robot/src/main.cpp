@@ -17,7 +17,7 @@ void setup() {
 
 	robot.setupLeftMotor(enablePin1, inputPin1, inputPin2);
 	robot.setupRightMotor(enablePin2, inputPin3, inputPin4);
-	robot.setupServo(servoPin);
+	robot.setupNeck(servoPin);
 	robot.setupBluetooth(bluetoothReceiverPin, bluetoothTransmitterPin);
 	robot.setupUltrasonic(triggerPin, echoPin);
 

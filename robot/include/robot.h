@@ -9,7 +9,7 @@ class Robot {
 private:
 	Motor* leftMotor;
 	Motor* rightMotor;
-	Servo servo;
+	Servo neck;
 
 	Ultrasonic* ultrasonic;
 
@@ -22,9 +22,9 @@ public:
 	void setupRightMotor(int enable, int input1, int input2);
 	void setupUltrasonic(int trigger, int echo);
 	void setupBluetooth(int receiver, int transmitter);
-	void setupServo(int pin);
+	void setupNeck(int pin);
 
-	void move();
+	void startMoving();
 	void stopMoving();
 
 	void turnNeck(int degrees);

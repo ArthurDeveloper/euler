@@ -12,7 +12,8 @@ double Ultrasonic::getDistanceInCm() {
 
 	double duration = pulseIn(echoPin, HIGH);
 
-	double distance = (duration * 0.343) / 2; // duration * speed of sound / 2
+	double speedOfSound = 0.0343;
+	double distance = (duration * speedOfSound) / 2;
 
 	return distance;
 }
