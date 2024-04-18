@@ -5,6 +5,9 @@
 #include <Servo.h>
 #include <motor.h>
 
+#define RIGHT 1
+#define LEFT 0
+
 class Robot {
 private:
 	Motor* leftMotor;
@@ -14,6 +17,11 @@ private:
 	Ultrasonic* ultrasonic;
 
 	Bluetooth* bluetooth;
+
+	int direction = RIGHT;
+	bool isCollisionImminent = false;
+	bool isMoving = false;
+	int timeWithoutCollisions = 0;
 
 public:
 	Robot();
@@ -26,6 +34,8 @@ public:
 
 	void startMoving();
 	void stopMoving();
+	void turnAround();
+	void avoidCollisions();
 
 	void turnNeck(int degrees);
 

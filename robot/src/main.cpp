@@ -21,7 +21,7 @@ void setup() {
 	robot.setupBluetooth(bluetoothReceiverPin, bluetoothTransmitterPin);
 	robot.setupUltrasonic(triggerPin, echoPin);
 
-	robot.move();
+	robot.startMoving();
 
 	Serial.begin(9600);
 }
@@ -44,4 +44,6 @@ void loop() {
 		int degrees = message.substring(4).toInt();
 		robot.turnNeck(degrees);
 	}
+
+	robot.avoidCollisions();
 }

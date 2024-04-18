@@ -25,13 +25,42 @@ void Robot::setupNeck(int pin) {
 }
 
 void Robot::startMoving() {
+	isMoving = true;
 	rightMotor->spinClockwise();
 	leftMotor->spinClockwise();
 }
 
 void Robot::stopMoving() {
+	isMoving = false;
 	rightMotor->stop();
 	leftMotor->stop();
+}
+
+void Robot::turnAround() {
+	direction = direction == RIGHT ? LEFT : RIGHT;
+}
+
+void Robot::avoidCollisions() {
+	if (ultrasonic->getDistanceInCm() < 20 && !isCollisionImminent && isMoving) {
+		isCollisionImminent = true;
+		turnAround();
+		if (direction == RIGHT) {
+			rightMotor->changeSpeed(0.25);
+			leftMotor->changeSpeed(1);
+			turnNeck(135);
+		} else {
+			rightMotor->changeSpeed(1);
+			leftMotor->changeSpeed(0.25);
+			turnNeck(45);
+		}
+	} else {
+		isCollisionImminent = false;
+		timeWithoutCollisions += millis();
+	}
+
+	if (timeWithoutCollisions >= 3000) {
+		turnNeck(0);
+	}
 }
 
 String Robot::readIncomingMessage() {
