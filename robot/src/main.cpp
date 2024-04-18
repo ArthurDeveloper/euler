@@ -37,7 +37,7 @@ void loop() {
 	}
 
 	if (message.equals("ON")) {
-		robot.move();
+		robot.startMoving();
 	} else if (message.equals("OFF")) {
 		robot.stopMoving();
 	} else if (message.startsWith("TURN")) {
