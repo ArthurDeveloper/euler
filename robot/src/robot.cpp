@@ -26,8 +26,13 @@ void Robot::setupNeck(int pin) {
 
 void Robot::startMoving() {
 	isMoving = true;
-	rightMotor->spinClockwise();
-	leftMotor->spinClockwise();
+	if (ultrasonic->getDistanceInCm() < 5) {
+		rightMotor->spinCounterclockwise();
+		leftMotor->spinCounterclockwise();
+	} else {
+		rightMotor->spinClockwise();
+		leftMotor->spinClockwise();
+	}
 }
 
 void Robot::stopMoving() {
@@ -41,11 +46,6 @@ void Robot::turnAround() {
 }
 
 void Robot::avoidCollisions() {
-	if (ultrasonic->getDistanceInCm() < 5) {
-		rightMotor->spinCounterclockwise();
-		leftMotor->spinCounterclockwise();
-	}
-
 	if (ultrasonic->getDistanceInCm() < 20 && !isCollisionImminent && isMoving) {
 		timeWithoutCollisions = 0;
 		isCollisionImminent = true;
