@@ -41,17 +41,23 @@ void Robot::turnAround() {
 }
 
 void Robot::avoidCollisions() {
+	if (ultrasonic->getDistanceInCm() < 5) {
+		rightMotor->spinCounterclockwise();
+		leftMotor->spinCounterclockwise();
+	}
+
 	if (ultrasonic->getDistanceInCm() < 20 && !isCollisionImminent && isMoving) {
+		timeWithoutCollisions = 0;
 		isCollisionImminent = true;
 		turnAround();
 		if (direction == RIGHT) {
 			rightMotor->changeSpeed(0.25);
 			leftMotor->changeSpeed(1);
-			turnNeck(135);
+			turnNeck(45);
 		} else {
 			rightMotor->changeSpeed(1);
 			leftMotor->changeSpeed(0.25);
-			turnNeck(45);
+			turnNeck(135);
 		}
 	} else {
 		isCollisionImminent = false;
